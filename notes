@@ -1,0 +1,7 @@
+The save method is overridden in the Purchase model. It first calls the superclass's save method to save the purchase instance in the database.
+
+Next, it iterates over each PurchaseItem associated with the current Purchase using the purchase_items reverse relationship. For each PurchaseItem, it retrieves the related menu item (item) and the purchased quantity (quantity).
+
+Then, it loops through the ingredients (ingredient) associated with the menu item's recipe requirements (item.recipe_requirements.ingredients.all()) and updates the available units by subtracting the purchased quantity. The updated ingredient is then saved.
+
+This ensures that when a purchase is made, the inventory is modified by reducing the available units of the ingredients used in the purchased menu items.
