@@ -1,4 +1,4 @@
-# Resturant_Management_System
+# Resturant_Inventory_Management_System
 an application that will help keep track of how much food a resturant has throughout the day. 
 For this inventory app to be useful for our restaurant owner, we would want our app to be able to answer the following questions:
 
