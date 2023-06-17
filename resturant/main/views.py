@@ -30,6 +30,11 @@ def login(request):
         form = LoginForm()
     return render(request, 'main/registration/login.html', {'form': form})
 
+@login_required
+def dashboard(request):
+    ingredients = Ingredient.objects.all()
+    menu_items = MenuItem.objects.all()
+    return render(request, 'dashboard.html', {'ingredients': ingredients, 'menu_items': menu_items})
 
 
 # Create your views here.

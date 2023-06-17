@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+</head>
+<body>
+    <!-- dashboard.html -->
+<h1>Dashboard</h1>
+
+<h2>Inventory</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Ingredient</th>
+            <th>Quantity</th>
+            <th>Price per Unit</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for ingredient in ingredients %}
+            <tr>
+                <td>{{ ingredient.name }}</td>
+                <td>{{ ingredient.quantity }}</td>
+                <td>{{ ingredient.price_per_unit }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<h2>Menu Items</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Recipe Name</th>
+            <th>Price</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for menu_item in menu_items %}
+            <tr>
+                <td>{{ menu_item.recipe_name }}</td>
+                <td>{{ menu_item.price }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+</body>
+</html>
