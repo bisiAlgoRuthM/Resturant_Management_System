@@ -1,5 +1,5 @@
 # Resturant Inventory Management System
-an application that will help keep track of how much food a resturant has throughout the day. 
+An application that will help keep track of how much food a resturant has throughout the day. 
 For this inventory app to be useful for our restaurant owner, we would want our app to be able to answer the following questions:
 
 - What is currently in the restaurant’s inventory?
