@@ -1,0 +1,18 @@
+<h1>Enter Recipe</h1>
+<form method="post">
+    {% csrf_token %}
+    <label for="recipe_name">Recipe Name:</label>
+    <input type="text" name="recipe_name" id="recipe_name">
+    <br><br>
+    <label for="ingredients">Ingredients:</label>
+    <select name="ingredients" multiple>
+        {% for ingredient in ingredients %}
+            <option value="{{ ingredient.id }}">{{ ingredient.name }}</option>
+        {% endfor %}
+    </select>
+    <br><br>
+    <label for="price">Price:</label>
+    <input type="number" name="price" id="price" step="0.01">
+    <br><br>
+    <input type="submit" value="Submit">
+</form>
