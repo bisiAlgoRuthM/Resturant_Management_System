@@ -1,0 +1,7 @@
+<h1>Enter Ingredient </h1>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <br>
+    <input type="submit" value="Submit">
+</form>

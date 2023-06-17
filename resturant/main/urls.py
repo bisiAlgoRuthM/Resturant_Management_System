@@ -1,12 +1,8 @@
 from django.urls import path
-from main.views import Index
-from django.conf.urls.static import static
-from django.conf import settings
+from .views import create_recipe
 
-
-'''from main.views import Index
+app_name = 'main'
 
 urlpatterns = [
-    path('home/', Index.as_view(), name= "index")
+    
 ]
-'''

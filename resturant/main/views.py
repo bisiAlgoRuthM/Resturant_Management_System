@@ -2,12 +2,24 @@ from django.shortcuts import render
 from django.http import JsonResponse
 from django.views import View #import generic view clas
 from .models import RecipeRequirement, MenuItem, Ingredient
-
+from .forms import IngredientForm
 
 # Create your views here.
 class Index(View):
     def get(self, request, *args, **kwargs):
         return render(request, 'main/index.html')
+    
+
+def enter_ingredient(request):
+    form = IngredientForm(request.POST or None)
+    if form.is_valid():
+        form.save()
+        return render(request, 'main/success1.html')
+
+    ingredients = Ingredient.objects.all()
+    return render(request, 'main/enter_ingredent.html', {'form': form, 'ingredients': ingredients})
+
+
     
 def create_recipe(request):
     if request.method == 'POST':
@@ -27,8 +39,8 @@ def create_recipe(request):
             recipe_requirement = recipe_requirement,
             price = price
         )
-        return render(request, 'success.html')
+        return render(request, 'main/success.html')
     
 
     ingredients = Ingredient.objects.all()
-    return render (request, 'enter_recipe.html', {'ingredients': ingredients})
+    return render (request, 'main/create_recipe.html', {'ingredients': ingredients})
