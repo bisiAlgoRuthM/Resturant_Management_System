@@ -1,18 +1,53 @@
 <h1>Enter Recipe</h1>
-<form method="post">
+<form method="post" action="{% url 'create_recipe' %}">
     {% csrf_token %}
+    
     <label for="recipe_name">Recipe Name:</label>
     <input type="text" name="recipe_name" id="recipe_name">
-    <br><br>
+    
     <label for="ingredients">Ingredients:</label>
-    <select name="ingredients" multiple>
-        {% for ingredient in ingredients %}
-            <option value="{{ ingredient.id }}">{{ ingredient.name }}</option>
-        {% endfor %}
+    <select name="ingredients" id="ingredients">
+      {% for ingredient in ingredients %}
+        <option value="{{ ingredient.id }}">{{ ingredient.name }}</option>
+      {% endfor %}
     </select>
-    <br><br>
-    <label for="price">Price:</label>
-    <input type="number" name="price" id="price" step="0.01">
-    <br><br>
-    <input type="submit" value="Submit">
-</form>
+    <label for="price">Price: </label>
+    <input type="text" name="price" id="price">
+    
+    <button type="button" id="add-ingredient">Add Ingredient</button>
+    
+    <ul id="selected-ingredients">
+      <!-- Selected ingredients will be dynamically added here -->
+    </ul>
+    
+    <button type="submit">Create Recipe</button>
+  </form>
+  
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const selectIngredients = document.getElementById("ingredients");
+      const selectedIngredientsList = document.getElementById("selected-ingredients");
+      const addIngredientBtn = document.getElementById("add-ingredient");
+      
+      addIngredientBtn.addEventListener("click", function() {
+        const selectedOption = selectIngredients.options[selectIngredients.selectedIndex];
+        
+        if (selectedOption) {
+          const ingredientId = selectedOption.value;
+          const ingredientName = selectedOption.text;
+          
+          const li = document.createElement("li");
+          li.textContent = ingredientName;
+          
+          const input = document.createElement("input");
+          input.type = "hidden";
+          input.name = "selected_ingredients";
+          input.value = ingredientId;
+          
+          li.appendChild(input);
+          selectedIngredientsList.appendChild(li);
+        }
+      });
+    });
+  </script>
+  

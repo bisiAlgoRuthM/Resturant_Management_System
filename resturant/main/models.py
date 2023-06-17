@@ -1,6 +1,11 @@
 from django.db import models
-
+from django.contrib.auth.models import AbstractUser
 # Create your models here.
+
+class User(AbstractUser):
+    first_name = models.CharField(max_length=30)
+    last_name = models.CharField(max_length=30)
+    email = models.EmailField(unique=True)
 #Ingredents in inventory
 class Ingredient(models.Model):
     name = models.CharField(max_length=50, unique=True)
@@ -12,7 +17,7 @@ class Ingredient(models.Model):
 
 #A list of ingredents each menu item requires
 class RecipeRequirement(models.Model):
-    ingredents = models.ManyToManyField('Ingredient', related_name='recipe_requirements')
+    ingredients = models.ManyToManyField('Ingredient', related_name='recipe_requirements')
 
 
 #MenuItems 
