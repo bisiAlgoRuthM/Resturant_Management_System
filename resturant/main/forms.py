@@ -1,13 +1,13 @@
 from django import forms
 from .models import Ingredient
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
-from .models import User
+from .models import CustomUser
 
 class RegistrationForm(UserCreationForm):
     email = forms.EmailField()
 
     class Meta:
-        model = User
+        model = CustomUser
         fields = ['first_name', 'last_name', 'email', 'password1', 'password2']
 
 class LoginForm(AuthenticationForm):

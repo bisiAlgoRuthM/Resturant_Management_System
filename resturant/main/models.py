@@ -1,11 +1,47 @@
 from django.db import models
-from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import AbstractUser, BaseUserManager, PermissionsMixin
 # Create your models here.
 
-class User(AbstractUser):
+'''class CustomUser(AbstractUser):
     first_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=30)
+    email = models.EmailField(unique=True)'''
+
+from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
+from django.db import models
+
+
+from django.contrib.auth.models import AbstractUser, BaseUserManager
+from django.db import models
+
+from django.contrib.auth.models import AbstractUser
+from django.db import models
+
+class CustomUser(AbstractUser):
     email = models.EmailField(unique=True)
+    first_name = models.CharField(max_length=30)
+    last_name = models.CharField(max_length=30)
+    is_active = models.BooleanField(default=True)
+    is_staff = models.BooleanField(default=False)
+
+    USERNAME_FIELD = "email"
+    REQUIRED_FIELDS = ["first_name", "last_name", "email"]
+
+    def get_full_name(self):
+        return f"{self.first_name} {self.last_name}"
+
+    def get_short_name(self):
+        return self.first_name
+
+    def __str__(self):
+        return self.email
+
+    class Meta:
+        swappable = 'auth.User'
+
+
+
+
 #Ingredents in inventory
 class Ingredient(models.Model):
     name = models.CharField(max_length=50, unique=True)

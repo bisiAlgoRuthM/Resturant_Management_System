@@ -76,18 +76,21 @@ WSGI_APPLICATION = 'resturant.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+DATABASES={
+   'default':{
+      'ENGINE':'django.db.backends.postgresql',
+      'NAME':'resturant_inventory',
+      'USER':'postgres',
+      'PASSWORD':'icecreamK9.',
+      'HOST':'localhost',
+      'PORT':'5432',
+   }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
 
-AUTH_USER_MODEL = 'main.User'
+#AUTH_USER_MODEL = 'main.CustomUser'
 
 AUTH_PASSWORD_VALIDATORS = [
     {

@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from main.views import Index, create_recipe, enter_ingredient, register, dashboard
+from main.views import Index, create_recipe, enter_ingredient, register, dashboard, success
 from django.contrib.auth import views as auth_views
 
 
@@ -25,6 +25,7 @@ urlpatterns = [
     path('', Index.as_view(), name='index'),
     path('enter-ingredient', enter_ingredient, name='enter_ingredient'),
     path('register/', register, name='register'),
+    path('success/', success, name='success'),
     path('login/', auth_views.LoginView.as_view(template_name='main/registration/login.html'), name='login'),
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
     path('dashboard/', dashboard, name='dashboard'),

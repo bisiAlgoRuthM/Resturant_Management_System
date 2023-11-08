@@ -5,17 +5,33 @@ from django.views import View #import generic view clas
 from .models import RecipeRequirement, MenuItem, Ingredient
 from .forms import IngredientForm, RegistrationForm, LoginForm
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import UserCreationForm
+from .models import CustomUser
+from django.http import HttpResponse
+
 
 def register(request):
     if request.method == 'POST':
-        form = RegistrationForm(request.POST)
+        form = UserCreationForm(request.POST)
         if form.is_valid():
+            username = form.cleaned_data.get('username')
+            if not username:
+                # Handle empty username case
+                return HttpResponse('Username is required.')
+            if CustomUser.objects.filter(username=username).exists():
+                # Handle duplicate username case
+                return HttpResponse('Username already exists.')
+
             form.save()
-            return render('login')
-        else:
-            form = RegistrationForm()
-            return render('main/registration/register.html', {'form': form})
-        
+            return HttpResponse('Registration successful!')
+    else:
+        form = UserCreationForm()
+
+    return render(request, 'main/registration/register.html', {'form': form})
+
+def success(request):
+    return render(request, 'main/registration/success.html')
+
 def login(request):
     if request.method == 'POST':
         form = LoginForm(request.POST)
@@ -34,7 +50,7 @@ def login(request):
 def dashboard(request):
     ingredients = Ingredient.objects.all()
     menu_items = MenuItem.objects.all()
-    return render(request, 'dashboard.html', {'ingredients': ingredients, 'menu_items': menu_items})
+    return render(request, 'main/dashboard.html', {'ingredients': ingredients, 'menu_items': menu_items})
 
 
 # Create your views here.

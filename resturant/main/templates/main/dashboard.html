@@ -14,7 +14,7 @@
     <thead>
         <tr>
             <th>Ingredient</th>
-            <th>Quantity</th>
+            <th>Available Units</th>
             <th>Price per Unit</th>
         </tr>
     </thead>
@@ -22,8 +22,8 @@
         {% for ingredient in ingredients %}
             <tr>
                 <td>{{ ingredient.name }}</td>
-                <td>{{ ingredient.quantity }}</td>
-                <td>{{ ingredient.price_per_unit }}</td>
+                <td>{{ ingredient.available_units }}</td>
+                <td>{{ ingredient.price }}</td>
             </tr>
         {% endfor %}
     </tbody>

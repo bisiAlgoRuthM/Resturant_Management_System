@@ -1,6 +1,70 @@
 <h1>Registration</h1>
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Register</button>
-</form>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <style>
+        /* CSS styles for the registration form */
+        label {
+          display: block;
+          margin-top: 10px;
+        }
+      
+        input, select {
+          margin-bottom: 10px;
+        }
+      
+        #password_instructions {
+          margin-top: 10px;
+          display: none;
+        }
+      </style>
+</head>
+<body>
+    <form method="POST" action="{% url 'register' %}">
+        {% csrf_token %}
+        
+        <label for="first_name">First Name:</label>
+        <input type="text" name="first_name" id="first_name">
+      
+        <label for="last_name">Last Name:</label>
+        <input type="text" name="last_name" id="last_name">
+      
+        <label for="email">Email:</label>
+        <input type="email" name="email" id="email">
+
+        <label for="username">Username:</label>
+        <input type="username" name="username" id="username">
+      
+      
+        <div id="password_fields">
+          <label for="password1">Password:</label>
+          <input type="password" name="password1" id="password1">
+      
+          <label for="password2">Confirm Password:</label>
+          <input type="password" name="password2" id="password2">
+        </div>
+      
+        <div id="password_instructions">
+          <p>Password instructions:</p>
+          <ul>
+            <li>Your password must be at least 8 characters long.</li>
+            <li>It should contain a mix of uppercase and lowercase letters, numbers, and special characters.</li>
+          </ul>
+        </div>
+      
+        <button type="submit">Register</button>
+      </form>
+<script>
+ function togglePasswordFields() {
+  var passwordInstructions = document.getElementById("password_instructions");
+    passwordFields.style.display = "block";
+    passwordInstructions.style.display = "block";
+}
+
+   
+</script>
+</body>
+</html>
