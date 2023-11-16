@@ -8,3 +8,6 @@ For this inventory app to be useful for our restaurant owner, we would want our 
 - What is the total revenue for the restaurant’s overall recorded purchases?
 - What is the total cost to the restaurant’s overall purchases made (sum of cost of all ingredients used).
 - How much profit (revenue - cost) does the restaurant make
+
+
+pip install -r requirements.txt
